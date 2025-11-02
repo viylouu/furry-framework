@@ -40,10 +40,10 @@ to build an example:
 - in the `furry-engine` folder (or the `furry` folder) you *definitely* cloned already:
     - run `./build.sh EXAMPLE_NAME <options>`
         - for example, running the `window` example would be `./build.sh window`
-> NOTE:
-> here are some options for you
-> -t   builds as a test using -O0 (or tcc)
-> -w   builds for windows (NOT NEEDED ON WINDOWS)
+> NOTE:  
+> here are some options for you  
+> -t   builds as a test using -O0 (or tcc)  
+> -w   builds for windows (NOT NEEDED ON WINDOWS)  
 
 to build your own project:
 - in your project root:
