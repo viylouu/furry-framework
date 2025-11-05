@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_GL_MAIN_H
 #define FUR_RENDER_GL_MAIN_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/matrix.h>
 #include <core/macros.h>
 #include <render/state.h>
@@ -45,5 +49,9 @@ typedef struct {
 FUR_gl_renderState* fur_render_gl_constr(FUR_renderState* agnostic);
 void fur_render_gl_destr(FUR_gl_renderState* state);
 void fur_render_gl_resize(FUR_gl_renderState* state, f32 w, f32 h);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

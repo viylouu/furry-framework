@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_GL_STRUCTS_H
 #define FUR_RENDER_GL_STRUCTS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <core/data/shader.h>
 #include <core/renderTarget.h>
@@ -49,5 +53,9 @@ void fur_render_gl_2d_tex_draw(FUR_gl_2d_tex* tex, mat4* proj2d, u32 vao, FUR_gl
 void fur_render_gl_2d_renderTarget_constr(FUR_gl_2d_renderTarget* targ);
 void fur_render_gl_2d_renderTarget_destr(FUR_gl_2d_renderTarget* targ);
 void fur_render_gl_2d_renderTarget_draw(FUR_gl_2d_renderTarget* targ, mat4* proj2d, u32 vao, FUR_gl_instanceData (*batch)[8192], u32 batch_amt, FUR_renderTarget* batch_in_target, FUR_renderTarget* batch_out_target, s32 width, s32 height);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

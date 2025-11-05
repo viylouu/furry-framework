@@ -1,6 +1,10 @@
 #ifndef FUR_TEXTURE_H
 #define FUR_TEXTURE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <render/api.h>
 
@@ -31,5 +35,9 @@ void IMPL_fur_texture_unload(FUR_texture* texture, OP_fur_texture_GENERIC op);
 
 #define fur_texture_unload(texture, ...) \
     IMPL_fur_texture_unload((texture), (OP_fur_texture_GENERIC){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

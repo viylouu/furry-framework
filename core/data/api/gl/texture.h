@@ -1,6 +1,10 @@
 #ifndef FUR_GL_TEXTURE_H
 #define FUR_GL_TEXTURE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/data/texture.h>
 #include <core/macros.h>
 
@@ -15,5 +19,9 @@ typedef struct {
 
 FUR_gl_texture* fur_gl_texture_load(FUR_texture* agnostic, const char* path);
 void fur_gl_texture_unload(FUR_gl_texture* texture);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

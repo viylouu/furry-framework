@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_GL_RENDER_TARGET_H
 #define FUR_RENDER_GL_RENDER_TARGET_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/renderTarget.h>
 #include <core/macros.h>
 
@@ -18,5 +22,9 @@ FUR_gl_renderTarget* fur_renderTarget_gl_constr(FUR_renderTarget* agnostic, s32 
 void fur_renderTarget_gl_destr(FUR_gl_renderTarget* targ);
 
 void fur_renderTarget_gl_resize(FUR_gl_renderTarget* targ, s32 width, s32 height);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

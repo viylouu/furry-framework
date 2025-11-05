@@ -1,6 +1,10 @@
 #ifndef FUR_PLATFORM_AGNOSTIC_H
 #define FUR_PLATFORM_AGNOSTIC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <platf/state.h>
 #include <render/state.h>
@@ -29,5 +33,8 @@ void fur_platf_setRender(FUR_platfState* state, FUR_renderState* render);
 #define fur_platf_constr(...) \
     IMPL_fur_platf_constr((OP_fur_platf_constr){ .title = "untitled", .dims = (v2){800,600}, .platf = FUR_PLATF_GLFW, __VA_ARGS__ })
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_GL_MISC_H
 #define FUR_RENDER_GL_MISC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <core/matrix.h>
 
@@ -12,5 +16,9 @@ typedef struct {
     f32 sx,sy,sw,sh;
     mat4 transform;
 } FUR_gl_instanceData;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

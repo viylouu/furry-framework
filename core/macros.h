@@ -1,6 +1,10 @@
 #ifndef FUR_MACROS_H
 #define FUR_MACROS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* ====== TYPES ====== */
 
 /* --- INTEGERS --- */
@@ -93,5 +97,9 @@ typedef struct { f32 x, y, z, w; } v4;
 
 #define IS_NAN(val) \
     ((val) != (val))
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

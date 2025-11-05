@@ -5,6 +5,10 @@
 #ifndef FUR_GL_LOADER_H
 #define FUR_GL_LOADER_H
 
+#ifdef __cplusplus
+extern C {
+#endif
+
 #include <core/macros.h>
 
 #include <GL/gl.h>
@@ -73,5 +77,9 @@ FUNC(glFramebufferRenderbuffer, void, GLenum target, GLenum attachment, GLenum r
 FUNC(glDeleteRenderbuffers, void, GLsizei n, const GLuint* renderbuffers);
 
 FUNC(glDrawBuffers, void, GLsizei n, const GLenum* bufs);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

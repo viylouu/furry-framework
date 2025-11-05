@@ -1,6 +1,10 @@
 #ifndef FUR_TIME_H
 #define FUR_TIME_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <platf/state.h>
 
@@ -30,5 +34,9 @@ void fur_destroyTimer(FUR_timer* timer);
 
 #define fur_makeTimer(...) \
     IMPL_fur_makeTimer((OP_fur_makeTimer){ .plat = FUR_PLATF_GLFW, .off = 0, __VA_ARGS__ })
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

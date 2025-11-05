@@ -1,6 +1,10 @@
 #ifndef FUR_INPUT_H
 #define FUR_INPUT_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <platf/state.h>
 
@@ -73,5 +77,9 @@ void fur_input_poll(FUR_platfState* platf);
 static inline b8 fur_input_isKeyPressed(FUR_key key)  { return fur_input_keys[key] == FUR_PRESSED; }
 static inline b8 fur_input_isKeyHeld(FUR_key key)     { return fur_input_keys[key] == FUR_PRESSED || fur_input_keys[key] == FUR_HELD; }
 static inline b8 fur_input_isKeyReleased(FUR_key key) { return fur_input_keys[key] == FUR_RELEASED; }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

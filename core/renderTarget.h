@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_RENDER_TARGET_H
 #define FUR_RENDER_RENDER_TARGET_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 #include <core/data/texture.h>
 #include <render/api.h>
@@ -33,5 +37,9 @@ void fur_renderTarget_resize(FUR_renderTarget* targ, s32 width, s32 height);
 
 #define fur_renderTarget_constr(width, height, ...) \
     IMPL_fur_renderTarget_constr((width), (height), (OP_fur_renderTarget_constr){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

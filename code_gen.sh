@@ -8,6 +8,10 @@ echo "
 #ifndef FUR_GL_LOADER_H
 #define FUR_GL_LOADER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 
 #include <GL/gl.h>
@@ -35,6 +39,10 @@ FUNC(glActiveTexture, void, GLenum texture);
 sed -E 's/^(.*\S.*)$/FUNC(\1);/' "$DEF" >> "$CUR"
 
 echo "
+#ifdef __cplusplus
+}
+#endif
+
 #endif" >> "$CUR"
 
 CUR="render/gl/loader.c"

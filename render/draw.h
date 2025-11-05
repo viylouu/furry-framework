@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_DRAW_H
 #define FUR_RENDER_DRAW_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <render/state.h>
 #include <core/macros.h>
 #include <core/matrix.h>
@@ -73,5 +77,9 @@ void IMPL_fur_render_renderTarget(FUR_renderState* render, OP_fur_render_renderT
 
 #define fur_render_renderTarget(render, ...) \
     IMPL_fur_render_renderTarget((render), (OP_fur_render_renderTarget){ .out_target = render->defTarget, .in_target = NULL, .pos = (v2){0,0}, .size = (v2){NAN,NAN}, .col = (v4){1,1,1,1}, .transf = mat4_identity, .sample = (v4){NAN,NAN,NAN,NAN}, __VA_ARGS__ })
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

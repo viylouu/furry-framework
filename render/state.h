@@ -1,6 +1,10 @@
 #ifndef FUR_RENDER_STATE_H
 #define FUR_RENDER_STATE_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <render/api.h>
 #include <core/data/texture.h>
 #include <core/renderTarget.h>
@@ -17,5 +21,9 @@ typedef struct {
     s32 height;
     FUR_renderTarget* defTarget;
 } FUR_renderState;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

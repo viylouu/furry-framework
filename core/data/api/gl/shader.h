@@ -1,6 +1,10 @@
 #ifndef FUR_GL_SHADER_H
 #define FUR_GL_SHADER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/data/shader.h>
 #include <core/macros.h>
 
@@ -16,5 +20,9 @@ typedef struct {
 
 FUR_gl_shader* fur_gl_shader_load(FUR_shader* agnostic, const char* vert, const char* frag);
 void fur_gl_shader_unload(FUR_gl_shader* shader);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

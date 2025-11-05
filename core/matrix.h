@@ -1,6 +1,10 @@
 #ifndef FUR_MATRIX_H
 #define FUR_MATRIX_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <core/macros.h>
 
 /* ====== DATATYPES ====== */
@@ -38,5 +42,9 @@ void mat4_scale(mat4* mat, f32 x, f32 y, f32 z);
 void mat4_rotateX(mat4* mat, f32 ang);
 void mat4_rotateY(mat4* mat, f32 ang);
 void mat4_rotateZ(mat4* mat, f32 ang);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
