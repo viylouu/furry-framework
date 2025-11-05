@@ -1,5 +1,5 @@
-# furry engine
-furry engine is a game engine designed to be a game engine  
+# furry framework
+furry framework is a game framework designed to be a game engine originally but now i dont want that anymore so i changed the name to furry framework and also that starts with the same letter so it all works out in the end yay  
 it is built using c99  
 
 ## contribution
@@ -14,17 +14,17 @@ this project is licensed under the LGPLv3 copyleft,
 for more information, see [here](LICENSE.LGPL)
 
 ## usage
-to use this engine in your project, its pretty "simpleh  
+to use this framework in your project, its pretty "simpleh  
 heres some steps (there are 2 routes you can take: with and without git):
 - USING GIT:
     - in your project root:
-        - run `git submodule add https://github.com/viylouu/furry-engine.git`
-        - run `git mv furry-engine furry`
+        - run `git submodule add https://github.com/viylouu/furry-framework.git`
+        - run `git mv furry-framework furry`
     - then, do the `GENERAL` steps
 - WITHOUT GIT:
-    - clone the repo `git clone https://github.com/viylouu/furry-engine.git`
+    - clone the repo `git clone https://github.com/viylouu/furry-framework.git`
     - in your project, copy the `furry-engine` folder over to it
-    - rename `furry-engine`to `furry`
+    - rename `furry-framework`to `furry`
     - then, do the `GENERAL` steps
 - GENERAL:
     - copy a few files and folders from `furry` to your project root:
@@ -37,7 +37,7 @@ when building, you can do one of 2 things:
 - build an example
 
 to build an example:
-- in the `furry-engine` folder (or the `furry` folder) you *definitely* cloned already:
+- in the `furry-framework` folder (or the `furry` folder) you *definitely* cloned already:
     - run `./build.sh EXAMPLE_NAME <options>`
         - for example, running the `window` example would be `./build.sh window`
 > NOTE:  
