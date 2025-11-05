@@ -33,7 +33,7 @@ void fur_destroyTimer(FUR_timer* timer);
 /* ====== MACROS ====== */
 
 #define fur_makeTimer(...) \
-    IMPL_fur_makeTimer((OP_fur_makeTimer){ .plat = FUR_PLATF_GLFW, .off = 0, __VA_ARGS__ })
+    IMPL_fur_makeTimer(STRUCT_LIT(OP_fur_makeTimer){ .plat = FUR_PLATF_GLFW, .off = 0, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }

@@ -31,10 +31,10 @@ void IMPL_fur_texture_unload(FUR_texture* texture, OP_fur_texture_GENERIC op);
 /* ====== MACROS ====== */
 
 #define fur_texture_load(path, ...) \
-    IMPL_fur_texture_load((path), (OP_fur_texture_GENERIC){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+    IMPL_fur_texture_load((path), STRUCT_LIT(OP_fur_texture_GENERIC){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
 
 #define fur_texture_unload(texture, ...) \
-    IMPL_fur_texture_unload((texture), (OP_fur_texture_GENERIC){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+    IMPL_fur_texture_unload((texture), STRUCT_LIT(OP_fur_texture_GENERIC){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }

@@ -22,7 +22,7 @@ void fur_render_resize(FUR_renderState* state, f32 w, f32 h);
 
 /* ====== MACROS ====== */
 #define fur_render_constr(...) \
-    IMPL_fur_render_constr((OP_fur_render_constr){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+    IMPL_fur_render_constr(STRUCT_LIT(OP_fur_render_constr){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }

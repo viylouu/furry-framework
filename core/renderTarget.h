@@ -36,7 +36,7 @@ void fur_renderTarget_resize(FUR_renderTarget* targ, s32 width, s32 height);
 /* ====== MACROS ====== */
 
 #define fur_renderTarget_constr(width, height, ...) \
-    IMPL_fur_renderTarget_constr((width), (height), (OP_fur_renderTarget_constr){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
+    IMPL_fur_renderTarget_constr((width), (height), STRUCT_LIT(OP_fur_renderTarget_constr){ .api = FUR_RENDER_API_GL, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }

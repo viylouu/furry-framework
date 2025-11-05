@@ -96,6 +96,15 @@ typedef struct { f32 x, y, z, w; } v4;
 #define UNUSED(param) \
     (void)(param)
 
+#ifdef __cplusplus
+#define STRUCT_LIT(type) \
+    type
+#else
+#define STRUCT_LIT(type) \
+    (type)
+#endif
+    
+
 /* ====== MATH ====== */
 
 #define IS_NAN(val) \
