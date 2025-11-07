@@ -23,7 +23,7 @@ heres some steps (there are 2 routes you can take: with and without git):
     - then, do the `GENERAL` steps
 - WITHOUT GIT:
     - clone the repo `git clone https://github.com/viylouu/furry-framework.git`
-    - in your project, copy the `furry-engine` folder over to it
+    - in your project, copy the `furry-framework` folder over to it
     - rename `furry-framework`to `furry`
     - then, do the `GENERAL` steps
 - GENERAL:
