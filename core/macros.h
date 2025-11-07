@@ -27,9 +27,51 @@ typedef u32 b32;
 typedef u64 b64;
 
 /* --- VECTORS --- */
+#ifdef __cplusplus
+struct v2 {
+    union {
+        struct { f32 x, y; };
+        struct { f32 w, h; };
+    };
+
+    v2()                : x(0), y(0)    {}
+    v2(f32 s)           : x(s), y(s)    {}
+    v2(f32 x_, f32 y_)  : x(x_), y(y_)  {}
+
+    v2 operator+(const v2& b) const { return v2{ x + b.x, y + b.y }; }
+    v2 operator-(const v2& b) const { return v2{ x - b.x, y - b.y }; }
+    v2 operator*(const v2& b) const { return v2{ x * b.x, y * b.y }; }
+    v2 operator/(const v2& b) const { return v2{ x / b.x, y / b.y }; }
+
+    v2 operator+(f32 s) const { return v2{ x + s, y + s }; }
+    v2 operator-(f32 s) const { return v2{ x - s, y - s }; }
+    v2 operator*(f32 s) const { return v2{ x * s, y * s }; }
+    v2 operator/(f32 s) const { return v2{ x / s, y / s }; }
+
+    v2 operator+=(const v2& b) { x += b.x; y += b.y; return *this; }
+    v2 operator-=(const v2& b) { x -= b.x; y -= b.y; return *this; }
+    v2 operator*=(const v2& b) { x *= b.x; y *= b.y; return *this; }
+    v2 operator/=(const v2& b) { x /= b.x; y /= b.y; return *this; }
+
+    v2 operator+=(f32 s) { x += s; y += s; return *this; }
+    v2 operator-=(f32 s) { x -= s; y -= s; return *this; }
+    v2 operator*=(f32 s) { x *= s; y *= s; return *this; }
+    v2 operator/=(f32 s) { x /= s; y /= s; return *this; }
+
+    v2 operator-() const { return v2{ -x, -y }; }
+
+    bool operator==(const v2& b) const { return x == b.x && y == b.y; }
+    bool operator!=(const v2& b) const { return x != b.x && y != b.y; }
+
+    friend std::ostream& operator<<(std::ostream& os, const v2& v) {
+        return os << '(' << v.x << ", " << v.y << ')';
+    }
+};
+#else
 typedef struct { f32 x, y; }       v2;
 typedef struct { f32 x, y, z; }    v3;
 typedef struct { f32 x, y, z, w; } v4;
+#endif
 
 /* ====== ERRORS AND WARNINGS ====== */
 
