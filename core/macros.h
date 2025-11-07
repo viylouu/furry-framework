@@ -28,6 +28,8 @@ typedef u64 b64;
 
 /* --- VECTORS --- */
 #ifdef __cplusplus
+#include <ostream>
+
 struct v2 {
     union {
         struct { f32 x, y; };
