@@ -61,9 +61,89 @@ struct v2 {
     v2 operator-() const { return v2{ -x, -y }; }
 
     bool operator==(const v2& b) const { return x == b.x && y == b.y; }
-    bool operator!=(const v2& b) const { return x != b.x && y != b.y; }
+    bool operator!=(const v2& b) const { return !(*this == b); }
 
     friend std::ostream& operator<<(std::ostream& os, const v2& v) {
+        return os << '(' << v.x << ", " << v.y << ')';
+    }
+};
+
+struct v3 {
+    union {
+        struct { f32 x, y, z; };
+        struct { f32 r, g, b; };
+    };
+
+    v3()                        : x(0), y(0), z(0)      {}
+    v3(f32 s)                   : x(s), y(s), z(s)      {}
+    v3(f32 x_, f32 y_, f32 z_)  : x(x_), y(y_), z(z_)   {}
+
+    v3 operator+(const v3& b) const { return v3{ x + b.x, y + b.y, z + b.z }; }
+    v3 operator-(const v3& b) const { return v3{ x - b.x, y - b.y, z - b.z }; }
+    v3 operator*(const v3& b) const { return v3{ x * b.x, y * b.y, z * b.z }; }
+    v3 operator/(const v3& b) const { return v3{ x / b.x, y / b.y, z / b.z }; }
+
+    v3 operator+(f32 s) const { return v3{ x + s, y + s, z + s }; }
+    v3 operator-(f32 s) const { return v3{ x - s, y - s, z - s }; }
+    v3 operator*(f32 s) const { return v3{ x * s, y * s, z * s }; }
+    v3 operator/(f32 s) const { return v3{ x / s, y / s, z / s }; }
+
+    v3 operator+=(const v3& b) { x += b.x; y += b.y; z += b.z; return *this; }
+    v3 operator-=(const v3& b) { x -= b.x; y -= b.y; z -= b.z; return *this; }
+    v3 operator*=(const v3& b) { x *= b.x; y *= b.y; z *= b.z; return *this; }
+    v3 operator/=(const v3& b) { x /= b.x; y /= b.y; z /= b.z; return *this; }
+
+    v3 operator+=(f32 s) { x += s; y += s; z += s; return *this; }
+    v3 operator-=(f32 s) { x -= s; y -= s; z -= s; return *this; }
+    v3 operator*=(f32 s) { x *= s; y *= s; z *= s; return *this; }
+    v3 operator/=(f32 s) { x /= s; y /= s; z /= s; return *this; }
+
+    v3 operator-() const { return v3{ -x, -y, -z }; }
+
+    bool operator==(const v3& b) const { return x == b.x && y == b.y && z == b.z; }
+    bool operator!=(const v3& b) const { return !(*this == b); }
+
+    friend std::ostream& operator<<(std::ostream& os, const v3& v) {
+        return os << '(' << v.x << ", " << v.y << ')';
+    }
+};
+
+struct v4 {
+    union {
+        struct { f32 x, y, z, w; };
+        struct { f32 r, g, b, a; };
+    };
+
+    v4()                                : x(0), y(0), z(0), w(0)    {}
+    v4(f32 s)                           : x(s), y(s), z(s), w(s)    {}
+    v4(f32 x_, f32 y_, f32 z_, f32 w_)  : x(x_), y(y_), z(z_), w(w_){}
+
+    v4 operator+(const v4& b) const { return v4{ x + b.x, y + b.y, z + b.z, w + b.w }; }
+    v4 operator-(const v4& b) const { return v4{ x - b.x, y - b.y, z - b.z, w - b.w }; }
+    v4 operator*(const v4& b) const { return v4{ x * b.x, y * b.y, z * b.z, w * b.w }; }
+    v4 operator/(const v4& b) const { return v4{ x / b.x, y / b.y, z / b.z, w / b.w }; }
+
+    v4 operator+(f32 s) const { return v4{ x + s, y + s, z + s, w + s }; }
+    v4 operator-(f32 s) const { return v4{ x - s, y - s, z - s, w - s }; }
+    v4 operator*(f32 s) const { return v4{ x * s, y * s, z * s, w * s }; }
+    v4 operator/(f32 s) const { return v4{ x / s, y / s, z / s, w / s }; }
+
+    v4 operator+=(const v4& b) { x += b.x; y += b.y; z += b.z; w += b.w; return *this; }
+    v4 operator-=(const v4& b) { x -= b.x; y -= b.y; z -= b.z; w -= b.w; return *this; }
+    v4 operator*=(const v4& b) { x *= b.x; y *= b.y; z *= b.z; w *= b.w; return *this; }
+    v4 operator/=(const v4& b) { x /= b.x; y /= b.y; z /= b.z; w /= b.w; return *this; }
+
+    v4 operator+=(f32 s) { x += s; y += s; z += s; w += s; return *this; }
+    v4 operator-=(f32 s) { x -= s; y -= s; z -= s; w -= s; return *this; }
+    v4 operator*=(f32 s) { x *= s; y *= s; z *= s; w *= s; return *this; }
+    v4 operator/=(f32 s) { x /= s; y /= s; z /= s; w /= s; return *this; }
+
+    v4 operator-() const { return v4{ -x, -y, -z, -w }; }
+
+    bool operator==(const v4& b) const { return x == b.x && y == b.y && z == b.z && w == b.w; }
+    bool operator!=(const v4& b) const { return !(*this == b); }
+
+    friend std::ostream& operator<<(std::ostream& os, const v4& v) {
         return os << '(' << v.x << ", " << v.y << ')';
     }
 };
