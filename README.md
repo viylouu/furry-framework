@@ -30,6 +30,8 @@ heres some steps (there are 2 routes you can take: with and without git):
     - copy a few files and folders from `furry` to your project root:
         - `build.sh`
         - `data`
+        - `.gitignore` (optionally)
+        - `.gitattributes` (optionally)
 
 ## building
 when building, you can do one of 2 things:
