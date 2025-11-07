@@ -28,8 +28,6 @@ typedef u64 b64;
 
 /* --- VECTORS --- */
 #ifdef __cplusplus
-#include <ostream>
-
 struct v2 {
     union {
         struct { f32 x, y; };
@@ -64,10 +62,6 @@ struct v2 {
 
     bool operator==(const v2& b) const { return x == b.x && y == b.y; }
     bool operator!=(const v2& b) const { return !(*this == b); }
-
-    friend std::ostream& operator<<(std::ostream& os, const v2& v) {
-        return os << '(' << v.x << ", " << v.y << ')';
-    }
 };
 
 struct v3 {
@@ -104,10 +98,6 @@ struct v3 {
 
     bool operator==(const v3& b) const { return x == b.x && y == b.y && z == b.z; }
     bool operator!=(const v3& b) const { return !(*this == b); }
-
-    friend std::ostream& operator<<(std::ostream& os, const v3& v) {
-        return os << '(' << v.x << ", " << v.y << ')';
-    }
 };
 
 struct v4 {
@@ -144,10 +134,6 @@ struct v4 {
 
     bool operator==(const v4& b) const { return x == b.x && y == b.y && z == b.z && w == b.w; }
     bool operator!=(const v4& b) const { return !(*this == b); }
-
-    friend std::ostream& operator<<(std::ostream& os, const v4& v) {
-        return os << '(' << v.x << ", " << v.y << ')';
-    }
 };
 #else
 typedef struct { f32 x, y; }       v2;
