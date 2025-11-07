@@ -108,6 +108,7 @@ struct v4 {
 
     v4()                                : x(0), y(0), z(0), w(0)    {}
     v4(f32 s)                           : x(s), y(s), z(s), w(s)    {}
+    v4(f32 x_, f32 y_, f32 z_)          : x(x_), y(y_), z(z_), w(0) {}
     v4(f32 x_, f32 y_, f32 z_, f32 w_)  : x(x_), y(y_), z(z_), w(w_){}
 
     v4 operator+(const v4& b) const { return v4{ x + b.x, y + b.y, z + b.z, w + b.w }; }
