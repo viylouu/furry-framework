@@ -31,7 +31,7 @@ void fur_platf_setRender(FUR_platfState* state, FUR_renderState* render);
 
 /* ====== MACROS ====== */
 #define fur_platf_constr(...) \
-    IMPL_fur_platf_constr(STRUCT_LIT(OP_fur_platf_constr){ .title = "untitled", .dims = STRUCT_LIT(v2){800,600}, .platf = FUR_PLATF_GLFW, __VA_ARGS__ })
+    IMPL_fur_platf_constr(STRUCT_LIT(OP_fur_platf_constr){ .title = (char*)"untitled", .dims = STRUCT_LIT(v2){800,600}, .platf = FUR_PLATF_GLFW, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }
