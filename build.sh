@@ -131,6 +131,11 @@ echo -e "\n]" >> "$OUT"
 
 echo "COMPILING: ${FILES_C[@]} ${FILES_CC[@]}"
 
+if command -v ccache >/dev/null 2>&1; then
+    echo "ccache enabled!"
+    COMPILER=("ccache" "${COMPILER[@]}")
+fi
+
 OBJ_DIR="build/obj"
 OBJS=()
 
