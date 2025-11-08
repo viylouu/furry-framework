@@ -38,8 +38,6 @@ typedef struct {
     FUR_renderTarget* batch_target;
     //mat4* batch_proj;
 
-    FUR_texture* nil;
-
     FUR_gl_2d_rect rect2d;
     FUR_gl_2d_tex  tex2d;
     FUR_gl_2d_renderTarget targ2d;

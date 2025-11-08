@@ -25,6 +25,8 @@ FUR_texture* IMPL_fur_texture_load(const char* path, OP_fur_texture_GENERIC op) 
 }
 
 void IMPL_fur_texture_unload(FUR_texture* texture, OP_fur_texture_GENERIC op) {
+    WARN_RETVOID_IF(!texture, "nice try but you cant unload a null texture!\n");
+
     switch(op.api) {
         case FUR_RENDER_API_GL:
             fur_gl_texture_unload(texture->spec); break;

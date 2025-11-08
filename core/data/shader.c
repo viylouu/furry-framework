@@ -22,6 +22,8 @@ FUR_shader* IMPL_fur_shader_load(const char* vert, const char* frag, OP_fur_shad
 }
 
 void IMPL_fur_shader_unload(FUR_shader* shader, OP_fur_shader_GENERIC op) {
+    WARN_RETVOID_IF(!shader, "nice try but you cant unload a null shader!\n");
+
     switch (op.api) {
         case FUR_RENDER_API_GL:
             fur_gl_shader_unload(shader->spec); break;
