@@ -39,7 +39,7 @@ typedef struct {
     v2 size;
     v4 col;
     mat4* transf;
-    mat4* proj;
+    //mat4* proj;
 } OP_fur_render_rect;
 
 typedef struct {
@@ -50,7 +50,7 @@ typedef struct {
     v4 sample;
     v4 col;
     mat4* transf;
-    mat4* proj;
+    //mat4* proj;
 } OP_fur_render_tex;
 
 typedef struct {
@@ -61,7 +61,7 @@ typedef struct {
     v4 sample;
     v4 col;
     mat4* transf;
-    mat4* proj;
+    //mat4* proj;
 } OP_fur_render_renderTarget;
 
 /* ====== FUNCS ====== */
@@ -73,13 +73,13 @@ void IMPL_fur_render_renderTarget(FUR_renderState* render, OP_fur_render_renderT
 /* ====== MACROS ====== */
 
 #define fur_render_rect(render, ...) \
-    IMPL_fur_render_rect((render), STRUCT_LIT(OP_fur_render_rect){ .target = render->defTarget, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){0,0}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, .proj = NULL, __VA_ARGS__ })
+    IMPL_fur_render_rect((render), STRUCT_LIT(OP_fur_render_rect){ .target = render->defTarget, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){0,0}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, /*.proj = NULL,*/ __VA_ARGS__ })
 
 #define fur_render_tex(render, ...) \
-    IMPL_fur_render_tex((render), STRUCT_LIT(OP_fur_render_tex){ .target = render->defTarget, .texture = NULL, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){NAN,NAN}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, .proj = NULL, .sample = STRUCT_LIT(v4){NAN,NAN,NAN,NAN}, __VA_ARGS__ })
+    IMPL_fur_render_tex((render), STRUCT_LIT(OP_fur_render_tex){ .target = render->defTarget, .texture = NULL, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){NAN,NAN}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, /*.proj = NULL,*/ .sample = STRUCT_LIT(v4){NAN,NAN,NAN,NAN}, __VA_ARGS__ })
 
 #define fur_render_renderTarget(render, ...) \
-    IMPL_fur_render_renderTarget((render), STRUCT_LIT(OP_fur_render_renderTarget){ .out_target = render->defTarget, .in_target = NULL, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){NAN,NAN}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, .proj = NULL, .sample = STRUCT_LIT(v4){NAN,NAN,NAN,NAN}, __VA_ARGS__ })
+    IMPL_fur_render_renderTarget((render), STRUCT_LIT(OP_fur_render_renderTarget){ .out_target = render->defTarget, .in_target = NULL, .pos = STRUCT_LIT(v2){0,0}, .size = STRUCT_LIT(v2){NAN,NAN}, .col = STRUCT_LIT(v4){1,1,1,1}, .transf = mat4_identity_ptr, /*.proj = NULL,*/ .sample = STRUCT_LIT(v4){NAN,NAN,NAN,NAN}, __VA_ARGS__ })
 
 #ifdef __cplusplus
 }
