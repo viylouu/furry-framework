@@ -7,6 +7,8 @@
 #include <core/renderTarget.h>
 
 int main(void) {
+    mat4_init(); // aaa
+
     FUR_platfState* platf = fur_platf_constr();
     FUR_renderState* render = fur_render_constr();
 
@@ -49,4 +51,6 @@ render->defTarget = NULL;
 
     fur_render_destr(render);
     fur_platf_destr(platf);
+    
+    mat4_deinit(); //aaaaaaaaaa
 }

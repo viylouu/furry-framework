@@ -2,6 +2,7 @@
 
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 
 /* ====== FUNCS ====== */
 
@@ -120,4 +121,15 @@ void mat4_rotateZ(mat4* mat, f32 ang) {
         0, 0, 1, 0,
         0, 0, 0, 1
         );
+}
+
+mat4* mat4_identity_ptr;
+
+void mat4_init(void) { // fuck this
+    mat4_identity_ptr = malloc(sizeof(mat4));
+    mat4_set_identity(mat4_identity_ptr);
+}
+
+void mat4_deinit(void) {
+    free(mat4_identity_ptr);
 }

@@ -25,7 +25,7 @@ FUR_gl_renderState* fur_render_gl_constr(FUR_renderState* agnostic) {
 
     glGenVertexArrays(1, &state->shitty_vao);
 
-    mat4_set_identity(&state->proj);
+    mat4_set_identity(&state->def_proj);
 
     fur_render_gl_2d_rect_constr(&state->rect2d);
     fur_render_gl_2d_tex_constr(&state->tex2d);

@@ -15,7 +15,14 @@ typedef f32 mat4[16];
 
 #define mat4_identity { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 }
 
+/* ====== VARS (dont like but it can stay) ====== */
+
+extern mat4* mat4_identity_ptr;
+
 /* ====== FUNCS ====== */
+
+void mat4_init(void);
+void mat4_deinit(void);
 
 void mat4_make(
     mat4* mat,
@@ -35,6 +42,7 @@ void mat4_ortho(
 );
 
 void mat4_set_identity(mat4* mat);
+mat4* mat4_get_identity(void);
 
 void mat4_translate(mat4* mat, f32 x, f32 y, f32 z);
 void mat4_scale(mat4* mat, f32 x, f32 y, f32 z);

@@ -27,7 +27,7 @@ typedef struct {
     FUR_renderState* agnostic;
     u32 shitty_vao;
 
-    mat4 proj;
+    mat4 def_proj;
     s32 width;
     s32 height;
 
@@ -36,6 +36,7 @@ typedef struct {
     u32 batch_amt;
     void* batch_other;
     FUR_renderTarget* batch_target;
+    mat4* batch_proj;
 
     FUR_texture* nil;
 
