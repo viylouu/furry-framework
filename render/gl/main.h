@@ -36,7 +36,7 @@ typedef struct {
     u32 batch_amt;
     void* batch_other;
     FUR_renderTarget* batch_target;
-    //mat4* batch_proj;
+    mat4* batch_proj;
 
     FUR_gl_2d_rect rect2d;
     FUR_gl_2d_tex  tex2d;

@@ -2,6 +2,7 @@
 
 #include <core/macros.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <render/gl/loader.h>
 #include <render/gl/main.h>
@@ -22,35 +23,44 @@ void fur_render_gl_clear(FUR_gl_renderState* render, FUR_renderTarget* target, f
 void fur_render_gl_flush(FUR_gl_renderState* render) {
     if (render->batch_amt == 0) return;
 
-    /*mat4* proj = &render->def_proj;
+    b8 mallocproj = 0;
+
+    mat4* proj = &render->def_proj;
     if (render->batch_proj)
-        proj = render->batch_proj;*/
+        proj = render->batch_proj;
+    else if (render->batch_target) {
+        proj = malloc(sizeof(mat4));
+        mat4_ortho(proj, 0, render->batch_target->texture->width, 0, render->batch_target->texture->height, -1,1);
+    }
 
     switch(render->batch_type) {
         case FUR_GL_BATCH_RECT:
-            fur_render_gl_2d_rect_draw(&render->rect2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_target, render->width, render->height); break;
+            fur_render_gl_2d_rect_draw(&render->rect2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_target, render->width, render->height, proj); break;
         case FUR_GL_BATCH_TEX:
-            fur_render_gl_2d_tex_draw(&render->tex2d, render->shitty_vao, &render->batch, render->batch_amt, CAST(FUR_texture*, render->batch_other)->spec, render->batch_target, render->width, render->height); break;
+            fur_render_gl_2d_tex_draw(&render->tex2d, render->shitty_vao, &render->batch, render->batch_amt, CAST(FUR_texture*, render->batch_other)->spec, render->batch_target, render->width, render->height, proj); break;
         case FUR_GL_BATCH_RENDER_TARGET:
-            fur_render_gl_2d_renderTarget_draw(&render->targ2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_other, render->batch_target, render->width, render->height); break;
+            fur_render_gl_2d_renderTarget_draw(&render->targ2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_other, render->batch_target, render->width, render->height, proj); break;
         default:
             WARN("type (%d) has no draw function!\n", render->batch_type);
     }
+
+    if (mallocproj)
+        free(proj);
 
     render->batch_amt = 0;
 }
 
 /* ====== FUNCS ====== */
 
-void fur_render_gl_rect(FUR_gl_renderState* render, FUR_renderTarget* target, mat4* transf, v2 pos, v2 size, v4 col) {
+void fur_render_gl_rect(FUR_gl_renderState* render, FUR_renderTarget* target, mat4* transf, mat4* proj, v2 pos, v2 size, v4 col) {
     if (render->batch_amt >= 8192) fur_render_gl_flush(render);
     if (render->batch_type != FUR_GL_BATCH_RECT) fur_render_gl_flush(render);
     if (render->batch_target != target) fur_render_gl_flush(render);
-    //if (render->batch_proj != proj) fur_render_gl_flush(render);
+    if (render->batch_proj != proj) fur_render_gl_flush(render);
 
     render->batch_type = FUR_GL_BATCH_RECT;
     render->batch_target = target;
-    //render->batch_proj = proj;
+    render->batch_proj = proj;
 
     FUR_gl_instanceData data = {0};
 
@@ -65,17 +75,17 @@ void fur_render_gl_rect(FUR_gl_renderState* render, FUR_renderTarget* target, ma
     ++render->batch_amt;
 }
 
-void fur_render_gl_tex(FUR_gl_renderState* render, FUR_renderTarget* target, FUR_texture* texture, mat4* transf, v2 pos, v2 size, v4 sample, v4 col) {
+void fur_render_gl_tex(FUR_gl_renderState* render, FUR_renderTarget* target, FUR_texture* texture, mat4* transf, mat4* proj, v2 pos, v2 size, v4 sample, v4 col) {
     if (render->batch_amt >= 8192) fur_render_gl_flush(render);
     if (render->batch_type != FUR_GL_BATCH_TEX) fur_render_gl_flush(render);
     if (render->batch_other != texture) fur_render_gl_flush(render);
     if (render->batch_target != target) fur_render_gl_flush(render);
-    //if (render->batch_proj != proj) fur_render_gl_flush(render);
+    if (render->batch_proj != proj) fur_render_gl_flush(render);
 
     render->batch_type = FUR_GL_BATCH_TEX;
     render->batch_other = texture;
     render->batch_target = target;
-    //render->batch_proj = proj;
+    render->batch_proj = proj;
 
     FUR_gl_instanceData data = {0};
 
@@ -92,17 +102,17 @@ void fur_render_gl_tex(FUR_gl_renderState* render, FUR_renderTarget* target, FUR
     ++render->batch_amt;
 }
 
-void fur_render_gl_renderTarget(FUR_gl_renderState* render, FUR_renderTarget* out_target, FUR_renderTarget* in_target, mat4* transf, v2 pos, v2 size, v4 sample, v4 col) {
+void fur_render_gl_renderTarget(FUR_gl_renderState* render, FUR_renderTarget* out_target, FUR_renderTarget* in_target, mat4* transf, mat4* proj, v2 pos, v2 size, v4 sample, v4 col) {
     if (render->batch_amt >= 8192) fur_render_gl_flush(render);
     if (render->batch_type != FUR_GL_BATCH_RENDER_TARGET) fur_render_gl_flush(render);
     if (render->batch_other != in_target) fur_render_gl_flush(render);
     if (render->batch_target != out_target) fur_render_gl_flush(render);
-    //if (render->batch_proj != proj) fur_render_gl_flush(render);
+    if (render->batch_proj != proj) fur_render_gl_flush(render);
 
     render->batch_type = FUR_GL_BATCH_RENDER_TARGET;
     render->batch_other = in_target;
     render->batch_target = out_target;
-    //render->batch_proj = proj;
+    render->batch_proj = proj;
 
     FUR_gl_instanceData data = {0};
 
