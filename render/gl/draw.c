@@ -23,14 +23,13 @@ void fur_render_gl_clear(FUR_gl_renderState* render, FUR_renderTarget* target, f
 void fur_render_gl_flush(FUR_gl_renderState* render) {
     if (render->batch_amt == 0) return;
 
-    b8 mallocproj = 0;
-
     mat4* proj = &render->def_proj;
+    mat4 proj_stack;
     if (render->batch_proj)
         proj = render->batch_proj;
     else if (render->batch_target) {
-        proj = malloc(sizeof(mat4));
-        mat4_ortho(proj, 0, render->batch_target->texture->width, 0, render->batch_target->texture->height, -1,1);
+        mat4_ortho(&proj_stack, 0, render->batch_target->texture->width, 0, render->batch_target->texture->height, -1,1);
+        proj = &proj_stack;
     }
 
     switch(render->batch_type) {
@@ -43,9 +42,6 @@ void fur_render_gl_flush(FUR_gl_renderState* render) {
         default:
             WARN("type (%d) has no draw function!\n", render->batch_type);
     }
-
-    if (mallocproj)
-        free(proj);
 
     render->batch_amt = 0;
 }
