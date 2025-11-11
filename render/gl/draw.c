@@ -14,7 +14,7 @@
 void fur_render_gl_clear(FUR_gl_renderState* render, FUR_renderTarget* target, f32 r, f32 g, f32 b) {
     fur_render_gl_flush(render);
 
-    easy_set_target(target, render->width, render->height);
+    easy_set_target(target, render->agnostic->width, render->agnostic->height);
 
     glClearColor(r,g,b, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -34,11 +34,11 @@ void fur_render_gl_flush(FUR_gl_renderState* render) {
 
     switch(render->batch_type) {
         case FUR_GL_BATCH_RECT:
-            fur_render_gl_2d_rect_draw(&render->rect2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_target, render->width, render->height, proj); break;
+            fur_render_gl_2d_rect_draw(&render->rect2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_target, render->agnostic->width, render->agnostic->height, proj); break;
         case FUR_GL_BATCH_TEX:
-            fur_render_gl_2d_tex_draw(&render->tex2d, render->shitty_vao, &render->batch, render->batch_amt, CAST(FUR_texture*, render->batch_other)->spec, render->batch_target, render->width, render->height, proj); break;
+            fur_render_gl_2d_tex_draw(&render->tex2d, render->shitty_vao, &render->batch, render->batch_amt, CAST(FUR_texture*, render->batch_other)->spec, render->batch_target, render->agnostic->width, render->agnostic->height, proj); break;
         case FUR_GL_BATCH_RENDER_TARGET:
-            fur_render_gl_2d_renderTarget_draw(&render->targ2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_other, render->batch_target, render->width, render->height, proj); break;
+            fur_render_gl_2d_renderTarget_draw(&render->targ2d, render->shitty_vao, &render->batch, render->batch_amt, render->batch_other, render->batch_target, render->agnostic->width, render->agnostic->height, proj); break;
         default:
             WARN("type (%d) has no draw function!\n", render->batch_type);
     }
