@@ -5,14 +5,22 @@
 
 /* ====== FUNCS ====== */
 
-void fur_input_glfw_updateAt(FUR_glfw_platfState* platf, s32 glfwPos, s32 i_asFur) {
+void fur_input_glfw_key_updateAt(FUR_glfw_platfState* platf, s32 glfwPos, s32 i_asFur) {
     FUR_keyState prev = fur_input_keys[i_asFur];
     FUR_keyState cur = fur_input_keys[i_asFur] = glfwGetKey(platf->window, glfwPos);
     if (cur == FUR_RELEASED && ( prev == FUR_RELEASED || prev == FUR_INACTIVE )) fur_input_keys[i_asFur] = FUR_INACTIVE;
     if (cur == FUR_PRESSED && ( prev == FUR_PRESSED || prev == FUR_HELD )) fur_input_keys[i_asFur] = FUR_HELD;
 }
 
-#define ua(a,b) fur_input_glfw_updateAt(platf, a,b)
+void fur_input_glfw_mouse_updateAt(FUR_glfw_platfState* platf, s32 glfwPos, s32 i_asFur) {
+    FUR_keyState prev = fur_input_mouse[i_asFur];
+    FUR_keyState cur = fur_input_mouse[i_asFur] = glfwGetMouseButton(platf->window, glfwPos);
+    if (cur == FUR_RELEASED && ( prev == FUR_RELEASED || prev == FUR_INACTIVE )) fur_input_mouse[i_asFur] = FUR_INACTIVE;
+    if (cur == FUR_PRESSED && ( prev == FUR_PRESSED || prev == FUR_HELD )) fur_input_mouse[i_asFur] = FUR_HELD;
+}
+
+#define ua(a,b) fur_input_glfw_key_updateAt(platf, a,b)
+#define uam(a,b) fur_input_glfw_mouse_updateAt(platf, a,b)
 
 void fur_input_glfw_poll(FUR_glfw_platfState* platf) {
     s32 off;
@@ -61,4 +69,13 @@ void fur_input_glfw_poll(FUR_glfw_platfState* platf) {
     ua(GLFW_KEY_RIGHT_ALT, FUR_KEY_RALT);
     ua(GLFW_KEY_LEFT_SUPER, FUR_KEY_LSUPER);
     ua(GLFW_KEY_RIGHT_SUPER, FUR_KEY_RSUPER);
+
+// MOUSE
+    uam(GLFW_MOUSE_BUTTON_LEFT, FUR_MOUSE_LEFT);
+    uam(GLFW_MOUSE_BUTTON_RIGHT, FUR_MOUSE_RIGHT);
+    uam(GLFW_MOUSE_BUTTON_MIDDLE, FUR_MOUSE_MIDDLE);
+
+    f64 mx, my;
+    glfwGetCursorPos(platf->window, &mx, &my);
+    fur_input_mouse_pos = (v2){mx,my};
 }

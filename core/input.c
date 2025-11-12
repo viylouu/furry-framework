@@ -8,6 +8,8 @@
 /* ====== VARS (BAD, REMOVE LATER) ====== */
 
 FUR_keyState fur_input_keys[FUR_KEY_LAST];
+FUR_keyState fur_input_mouse[FUR_MOUSE_LAST];
+v2 fur_input_mouse_pos;
 
 void fur_input_poll(FUR_platfState* platf) {
     switch (platf->plat) {

@@ -66,9 +66,19 @@ typedef enum {
     FUR_KEY_LAST
 } FUR_key;
 
+typedef enum {
+    FUR_MOUSE_LEFT,
+    FUR_MOUSE_RIGHT,
+    FUR_MOUSE_MIDDLE,
+
+    FUR_MOUSE_LAST
+} FUR_mouse;
+
 /* ====== VARS (BAD, REMOVE LATER) ====== */
 
 extern FUR_keyState fur_input_keys[FUR_KEY_LAST];
+extern FUR_keyState fur_input_mouse[FUR_MOUSE_LAST];
+extern v2 fur_input_mouse_pos;
 
 /* ====== FUNCS ====== */
 
@@ -77,6 +87,10 @@ void fur_input_poll(FUR_platfState* platf);
 static inline b8 fur_input_isKeyPressed(FUR_key key)  { return fur_input_keys[key] == FUR_PRESSED; }
 static inline b8 fur_input_isKeyHeld(FUR_key key)     { return fur_input_keys[key] == FUR_PRESSED || fur_input_keys[key] == FUR_HELD; }
 static inline b8 fur_input_isKeyReleased(FUR_key key) { return fur_input_keys[key] == FUR_RELEASED; }
+
+static inline b8 fur_input_isMousePressed(FUR_mouse but)  { return fur_input_mouse[but] == FUR_PRESSED; }
+static inline b8 fur_input_isMouseHeld(FUR_mouse but)     { return fur_input_mouse[but] == FUR_PRESSED || fur_input_mouse[but] == FUR_HELD; }
+static inline b8 fur_input_isMouseReleased(FUR_mouse but) { return fur_input_mouse[but] == FUR_RELEASED; }
 
 #ifdef __cplusplus
 }
