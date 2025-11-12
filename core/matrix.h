@@ -51,6 +51,8 @@ void mat4_rotateX(mat4* mat, f32 ang);
 void mat4_rotateY(mat4* mat, f32 ang);
 void mat4_rotateZ(mat4* mat, f32 ang);
 
+void mat4_multiply_vector(v4* out, const mat4 a, v4 b);
+
 #ifdef __cplusplus
 }
 #endif
